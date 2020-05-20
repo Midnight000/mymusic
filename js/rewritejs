@@ -1,0 +1,14 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+js = open("/mysites/music/js/js.txt", "r", encoding='utf-8')
+namelist = open("/mysites/music/namestring/namelist.txt", "r", encoding="utf-8")
+singerlist = open("/mysites/music/namestring/singerlist.txt", "r", encoding="utf-8")
+songsource = open("/mysites/music/namestring/songsource.txt", "r", encoding="utf-8")
+lines = js.readlines()
+lines[10] = "var musicSrcList = [" + songsource.read() + "];\n"
+lines[12] = "var singerNameList = [" + singerlist.read() + "];\n"
+lines[13] = "var songNameList = [" + namelist.read() + "];\n"
+js.close()
+js = open("/mysites/music/js/mymusic.js", "w", encoding='utf-8')
+for i in lines:
+    js.write(i)
